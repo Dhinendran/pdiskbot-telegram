@@ -16,7 +16,7 @@ Upload on Pdisk by Url, File and also by direct forward post from other channel.
 
 #### The Easy Way
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy?template=https://github.com/ParitoshPky/pdisk_uploader)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy?template=https://github.com/Dhinendran/pdiskbot-telegram.git)
 
 ##### Required Variables
 
@@ -28,4 +28,3 @@ Upload on Pdisk by Url, File and also by direct forward post from other channel.
 
 ##### Credit
 
-- Me [Paritosh Kumar](https://github.com/ParitoshPky) For This Repo
