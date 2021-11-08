@@ -11,27 +11,27 @@
     "env": {
         "BOT_TOKEN": {
             "description": "Your bot token (must add)",
-            "value": "2138923832:AAGt1sgw0n5BPorJIYOhA-nm0he-RjmrEgo"
+            "value": ""
         },
         "API_ID": {
             "description": "Get this value from https://my.telegram.org",
-            "value": "7969754"
+            "value": ""
         },
         "API_HASH": {
             "description": "Get this value from https://my.telegram.org",
-            "value": "b4d2a3262d248e2ae4185312cfd8298f"
+            "value": ""
         },
         "PDISK_API_KEY": {
             "description": "Get this from https://www.pdisk.me/use-api (must change)",
-            "value": "52273d97d9e2c79561ade990505f9662"
+            "value": ""
         },
         "CHANNEL": {
             "description": "Enter your telegram channel Username (must change and without @)",
-            "value": "tamilblasters_ws"
+            "value": ""
         },
         "THUMB_URL": {
             "description": "Enter the permanent thumbnail image url can use this @HK_telegraph_BOT",
-            "value": "@HK_telegraph_BOT"
+            "value": ""
         }
     },
     "addons": [],

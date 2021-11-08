@@ -12,7 +12,7 @@ API_ID = environ.get('API_ID')
 API_HASH = environ.get('API_HASH')
 BOT_TOKEN = environ.get('BOT_TOKEN')
 PDISK_API_KEY = environ.get('PDISK_API_KEY')
-THUMB_URL = environ.get('THUMB_URL', 'https://telegra.ph/file/1181d9119a13988dfe29c.jpg')
+THUMB_URL = 'https://telegra.ph/Tamil-Blasters-11-08'
 CHANNEL = environ.get('CHANNEL')
 bot = Client('pdisk bot',
              api_id=API_ID,
@@ -84,7 +84,7 @@ async def get_ptitle(url):
 
 
 async def pdisk_up(link):
-    if ('pdisk' in link or 'wslinker' in link or 'cdinks' in link or 'kuklink' in link or 'kofilink' in link or 'cofilink' in link or 'bit' in link or 'vdshort' in link or link in 'vidrivers' or 'dplinks' in link):
+    if ('pdisk' in link or 'wslinker' in link or 'cdinks' in link or 'kuklink' in link or 'kofilink' in link or 'cofilink' in link or 'bit' in link or 'vdshort' in link or link in 'vidrivers' or 'dplinks' in link or 'pdislin' in link):
         res = await get_ptitle(link)
         title_pdisk = res[0]
         link = res[1]
@@ -147,8 +147,8 @@ async def remove_username(new_List):
 async def addFooter(str):
     footer = """
 ━━━━━━━━━━━━━━━
-⚙️ Support Us 💖
-━━━━━━━━━━━━━━━""" 
+⚙️ Support Us 💖 ➡️ t.me/{0}
+━━━━━━━━━━━━━━━""".format(CHANNEL)
     return str + footer
 
 bot.run()
