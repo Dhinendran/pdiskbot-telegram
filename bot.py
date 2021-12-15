@@ -7,13 +7,16 @@ from pyrogram import Client, filters
 from bs4 import BeautifulSoup
 import requests
 import re
+from doodstream import DoodStream
 
-API_ID = environ.get('API_ID')
-API_HASH = environ.get('API_HASH')
-BOT_TOKEN = environ.get('BOT_TOKEN')
-PDISK_API_KEY = environ.get('PDISK_API_KEY')
+API_ID = environ.get('API_ID',"7969754")
+API_HASH = environ.get('API_HASH',"b4d2a3262d248e2ae4185312cfd8298f")
+BOT_TOKEN = environ.get('BOT_TOKEN',"2141359367:AAErvol-y4BZCUOvK-Ix2evitgPfy7ybKSU")
+PDISK_API_KEY = environ.get('PDISK_API_KEY',"69337jrosyrhx8fix90ou")
 THUMB_URL = environ.get('THUMB_URL','https://telegra.ph/Tamil-Blasters-11-08')
-CHANNEL = environ.get('CHANNEL')
+CHANNEL = environ.get('CHANNEL',"tamilblasters_info")
+dood = DoodStream("69337jrosyrhx8fix90ou")
+
 bot = Client('pdisk bot',
              api_id=API_ID,
              api_hash=API_HASH,
@@ -28,10 +31,20 @@ async def start(bot, message):
         f"**𝗛𝗘𝗟𝗟𝗢🎈{message.chat.first_name}!**\n\n"
         "𝐈'𝐦 𝐚 𝐏𝐝𝐢𝐬𝐤 𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐫 𝐛𝐨𝐭. 𝐉𝐮𝐬𝐭 𝐬𝐞𝐧𝐝 𝐦𝐞 𝐥𝐢𝐧𝐤 𝐨𝐫 𝐅𝐮𝐥𝐥 𝐩𝐨𝐬𝐭... \n")
 
+@bot.on_message(filters.text & filters.private)
+async def pdisk_uploader(bot, message):
+    new_string = str(message.text)
+    
+    try:
+        pdisk_link = await multi_pdisk_up(new_string)
+        await message.reply(f'{pdisk_link}', quote=True)
+    except Exception as e:
+        await message.reply(f'Error: {e}', quote=True)
 
 @bot.on_message(filters.text & filters.private)
 async def pdisk_uploader(bot, message):
     new_string = str(message.text)
+    
     try:
         pdisk_link = await multi_pdisk_up(new_string)
         await message.reply(f'{pdisk_link}', quote=True)
@@ -41,6 +54,7 @@ async def pdisk_uploader(bot, message):
 
 @bot.on_message(filters.photo & filters.private)
 async def pdisk_uploader(bot, message):
+    
     new_string = str(message.caption)
     try:
         pdisk_link = await multi_pdisk_up(new_string)
@@ -53,6 +67,7 @@ async def pdisk_uploader(bot, message):
 
 
 async def get_ptitle(url):
+    
     html_text = requests.get(url).text
     soup = BeautifulSoup(html_text, 'html.parser')
     for title in soup.find_all('title'):
@@ -84,25 +99,28 @@ async def get_ptitle(url):
 
 
 async def pdisk_up(link):
-    if ('pdisk' in link or 'wslinker' in link or 'cdinks' in link or 'kuklink' in link or 'kofilink' in link or 'cofilink' in link or 'bit' in link or 'vdshort' in link or link in 'vidrivers' or 'dplinks' in link or 'pdislin' in link):
-        res = await get_ptitle(link)
-        title_pdisk = res[0]
-        link = res[1]
-    else:
-        title_new = urlparse(link)
-        title_new = os.path.basename(title_new.path)
-        title_pdisk = '@' + CHANNEL +' '+ title_new
-    res = requests.get(
-        'http://linkapi.net/open/create_item?link_type=link&content_src=' + link + '&source=2000&cover_url='+THUMB_URL+'&api_key=' + PDISK_API_KEY + '&dir_id=0&title=' + title_pdisk + '&description=Join_' + CHANNEL + '_for_more_like_this')
-    data = res.json()
-    data = dict(data)
-    print(data)
-    v_id = data['data']['item_id']
-    v_url = 'https://weeshares.net/share-video?videoid=' + v_id
-    return (v_url)
+    # import pdb; pdb.set_trace()
+    #     res = await get_ptitle(link)
+    #     title_pdisk = res[0]
+    #     link = res[1]
+    # else:
+    #     title_new = urlparse(link)
+    #     title_new = os.path.basename(title_new.path)
+    #     title_pdisk = '@' + CHANNEL +' '+ title_new
+    # res = requests.get('https://doodapi.com/api/upload/url?key={}&url={}'.format(PDISK_API_KEY,link))
+    if ('dood' in link):
+        data = dood.remote_upload(link)
+        print(data)
+        # data = dict(data)
+        # v_id = data['result']['filecode']
+        if data["status"] == 200:
+            v_url = data["result"]["download_url"]
+            return (v_url)
+    return ""
 
 
 async def multi_pdisk_up(ml_string):
+    
     new_ml_string = list(map(str, ml_string.split(" ")))
     new_ml_string = await remove_username(new_ml_string)
     new_join_str = "".join(new_ml_string)
